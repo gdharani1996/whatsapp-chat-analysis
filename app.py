@@ -3,7 +3,7 @@ import preprocessor,helper
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-st.sidebar.title("Whatsapp Chat Analyzer")
+st.sidebar.title("*Whatsapp Chat Analyzer*")
 
 uploaded_file = st.sidebar.file_uploader("Choose a file")
 if uploaded_file is not None:
@@ -24,18 +24,18 @@ if uploaded_file is not None:
         # Stats Area
         num_messages, words, num_media_messages, num_links = helper.fetch_stats(selected_user,df)
         st.title("Top Statistics")
-        col1, col2, col3, col4 = st.columns(4)
+        col_1, col_2, col_3, col_4 = st.columns(4)
 
-        with col1:
+        with col_1:
             st.header("Total Messages")
             st.title(num_messages)
-        with col2:
+        with col_2:
             st.header("Total Words")
             st.title(words)
-        with col3:
+        with col_3:
             st.header("Media Shared")
             st.title(num_media_messages)
-        with col4:
+        with col_4:
             st.header("Links Shared")
             st.title(num_links)
 
@@ -57,9 +57,9 @@ if uploaded_file is not None:
 
         # activity map
         st.title('Activity Map')
-        col1,col2 = st.columns(2)
+        col_1,col_2 = st.columns(2)
 
-        with col1:
+        with col_1:
             st.header("Most busy day")
             busy_day = helper.week_activity_map(selected_user,df)
             fig,ax = plt.subplots()
@@ -67,7 +67,7 @@ if uploaded_file is not None:
             plt.xticks(rotation='vertical')
             st.pyplot(fig)
 
-        with col2:
+        with col_2:
             st.header("Most busy month")
             busy_month = helper.month_activity_map(selected_user, df)
             fig, ax = plt.subplots()
@@ -87,13 +87,13 @@ if uploaded_file is not None:
             x,new_df = helper.most_busy_users(df)
             fig, ax = plt.subplots()
 
-            col1, col2 = st.columns(2)
+            col_1, col_2 = st.columns(2)
 
-            with col1:
+            with col_1:
                 ax.bar(x.index, x.values,color='red')
                 plt.xticks(rotation='vertical')
                 st.pyplot(fig)
-            with col2:
+            with col_2:
                 st.dataframe(new_df)
 
         # WordCloud
@@ -118,11 +118,11 @@ if uploaded_file is not None:
         emoji_df = helper.emoji_helper(selected_user,df)
         st.title("Emoji Analysis")
 
-        col1,col2 = st.columns(2)
+        col_1,col_2 = st.columns(2)
 
-        with col1:
+        with col_1:
             st.dataframe(emoji_df)
-        with col2:
+        with col_2:
             fig,ax = plt.subplots()
             ax.pie(emoji_df[1].head(),labels=emoji_df[0].head(),autopct="%0.2f")
             st.pyplot(fig)
